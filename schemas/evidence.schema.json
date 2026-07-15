@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FreshGuard Evidence Object",
+  "description": "Every item entering LLM analysis must conform to this schema",
+  "type": "object",
+  "required": ["id", "title", "url", "retrieved_at", "fresh", "_sl", "_cutoff"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^ev_\\d+$",
+      "description": "Unique evidence identifier"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable title"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Source URL (citation anchor)"
+    },
+    "source_name": {
+      "type": "string",
+      "description": "Human-readable source name"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["news", "government", "academic", "social", "blog", "other"],
+      "description": "Category of source"
+    },
+    "source_tier": {
+      "type": "string",
+      "enum": ["primary", "official", "curated", "unrated"],
+      "description": "Declared provenance tier, not a truth guarantee"
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Extractive feed summary; absent when a source exposes no summary"
+    },
+    "published_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Original publication time (null = unknown)"
+    },
+    "retrieved_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this item was fetched"
+    },
+    "fresh": {
+      "type": ["boolean", "null"],
+      "description": "true (within window), false (stale), null (unknown)"
+    },
+    "_sl": {
+      "type": "string",
+      "pattern": "^\\[S:.*\\|D:.*\\|F:[YN\\?]\\]$",
+      "description": "Source label for LLM citation"
+    },
+    "_cutoff": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Freshness window boundary timestamp"
+    },
+    "_dup": {
+      "type": "boolean",
+      "description": "true if this item was already reported (filtered before LLM)"
+    }
+  }
+}

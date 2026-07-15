@@ -1,0 +1,36 @@
+name: generate-ai-research-digest
+
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.11"
+      - run: mkdir output
+      - name: Restore deduplication state
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: output/seen.sqlite
+          key: freshguard-ai-research-${{ github.run_id }}
+          restore-keys: |
+            freshguard-ai-research-
+      - run: python scripts/rss_guard.py --profile profiles/ai-research.json --state-file output/seen.sqlite > output/evidence.json
+      - run: python scripts/render_briefing.py --input output/evidence.json --output output/digest.md --title "AI research watch"
+      - name: Save deduplication state
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: output/seen.sqlite
+          key: freshguard-ai-research-${{ github.run_id }}
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: ai-research-digest
+          path: output/
+          retention-days: 1

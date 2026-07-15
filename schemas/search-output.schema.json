@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FreshGuard Search Output",
+  "description": "Search script stdout when fresh data is found",
+  "type": "object",
+  "required": ["version", "schema_version", "items", "fresh_count", "total_count"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "FreshGuard version"
+    },
+    "schema_version": {
+      "type": "string",
+      "description": "Output schema version for compatibility checks"
+    },
+    "elapsed_ms": {
+      "type": "integer",
+      "description": "Wall-clock execution time in milliseconds"
+    },
+    "provider": {
+      "type": "string",
+      "description": "Search provider identifier (optional)"
+    },
+    "fresh_count": { "type": "integer", "minimum": 0 },
+    "total_count": { "type": "integer", "minimum": 0 },
+    "window_hours": { "type": "integer", "minimum": 1 },
+    "min_items": { "type": "integer", "minimum": 1 },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "url"],
+        "properties": {
+          "title": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "published_at": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "description": "Normalized publication time in ISO 8601, or null when unknown"
+          },
+          "source_name": { "type": "string" },
+          "source_type": {
+            "type": "string",
+            "enum": ["news", "government", "academic", "social", "blog", "other"]
+          },
+          "source_tier": {
+            "type": "string",
+            "enum": ["primary", "official", "curated", "unrated"]
+          },
+          "summary": { "type": "string", "maxLength": 2000 }
+        }
+      }
+    }
+  }
+}

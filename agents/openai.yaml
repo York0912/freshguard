@@ -1,0 +1,4 @@
+interface:
+  display_name: "FreshGuard"
+  short_description: "Create fresh, source-bound monitoring digests."
+  default_prompt: "Use $freshguard to collect a curated feed profile and render a source-bound daily briefing that stays silent when fresh evidence is insufficient."

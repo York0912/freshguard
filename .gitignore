@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.db
+*.sqlite
+.pytest_cache/
+.venv/
+venv/
+.freshguard/
+output/
+evidence.json
+digest.md

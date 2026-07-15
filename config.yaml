@@ -1,0 +1,46 @@
+# FreshGuard Configuration / 配置文件
+
+version: "2.1.0"
+
+# This is an integration template. The reference Python CLI currently takes
+# runtime values from its command-line flags; wire these defaults in your own
+# scheduler or adapter.
+
+# Search Layer / 搜索层
+search:
+  provider: "default"
+  timeout_seconds: 30
+  max_retries: 2
+  user_agent: "FreshGuard/2.0"
+
+# Freshness Gate / 新鲜度门
+freshness:
+  mode: "binary"           # binary | score (score = v2 candidate)
+  window_hours: 48         # Freshness window
+  min_items: 2             # Minimum fresh items to proceed
+  force_if_critical: "outage,incident,recall,security"  # Bypass keywords
+
+# Abort Behavior / 中止行为
+abort:
+  on_no_results: true      # No items at all → silent
+  on_stale: true           # All items stale → silent
+  on_error: true           # Search error → alert via exit code
+  on_invalid_schema: true  # Invalid JSON output → alert
+
+# Dedup / 去重
+dedup:
+  enabled: false           # Enable via --state-file
+  state_file: ""           # SQLite path
+  prune_older_than_days: 0 # 0 = no pruning
+
+# LLM Analysis / 分析层
+analysis:
+  require_citations: true
+  allow_external_knowledge: false
+  max_output_length: 2000
+
+# Logging / 日志
+logging:
+  level: "info"            # debug | info | warn | error
+  stdout_signals: true     # Log status signals to stdout
+  diagnostics: true        # Log diagnostics to stderr

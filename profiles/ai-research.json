@@ -1,0 +1,28 @@
+{
+  "name": "AI research watch",
+  "freshness": {
+    "hours": 168,
+    "min_items": 2,
+    "max_items": 12
+  },
+  "feeds": [
+    {
+      "url": "https://export.arxiv.org/rss/cs.AI",
+      "source_name": "arXiv cs.AI",
+      "source_type": "academic",
+      "source_tier": "primary"
+    },
+    {
+      "url": "https://export.arxiv.org/rss/cs.CL",
+      "source_name": "arXiv cs.CL",
+      "source_type": "academic",
+      "source_tier": "primary"
+    },
+    {
+      "url": "https://github.com/openai/openai-python/releases.atom",
+      "source_name": "openai-python releases",
+      "source_type": "other",
+      "source_tier": "official"
+    }
+  ]
+}
