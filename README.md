@@ -8,6 +8,19 @@ It is built for small, auditable monitoring workflows—not a general-purpose we
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+## See it in 17 seconds
+
+![FreshGuard terminal demo](assets/freshguard-demo.gif)
+
+The GIF uses a fixed, non-live fixture: it shows the whole contract—collect, gate, render, and `NO_NEW_CONTENT` stays silent—without embedding a real feed, local path, or account detail. Inspect the exact sample in [examples/demo-evidence.json](examples/demo-evidence.json), or reproduce its Markdown output:
+
+```bash
+python scripts/render_briefing.py --input examples/demo-evidence.json \
+  --output examples/demo-digest.md --title "AI research watch"
+```
+
+`examples/demo-digest.md` is ignored because it is reproducible output. Maintainers can regenerate the committed GIF with `python scripts/render_demo_gif.py`; that optional asset helper uses Pillow and is not part of the core runtime.
+
 ## What v2 adds
 
 - Portable JSON feed profiles with declared source type and provenance tier.
@@ -98,6 +111,7 @@ The core gate is provider-neutral and remains available in [reference/python/sea
 python tests/test-freshguard.py
 python tests/test-rss-guard.py
 python tests/test-render-briefing.py
+python tests/test-demo-gif.py
 bash tests/test-bash-wrapper.sh
 ```
 
@@ -109,6 +123,8 @@ bash tests/test-bash-wrapper.sh
 | [profiles/](profiles/) | Portable monitoring configurations |
 | [scripts/rss_guard.py](scripts/rss_guard.py) | RSS/Atom collector + FreshGuard gate |
 | [scripts/render_briefing.py](scripts/render_briefing.py) | Extractive Markdown renderer |
+| [scripts/render_demo_gif.py](scripts/render_demo_gif.py) | Maintainer helper for the deterministic demo GIF |
+| [examples/](examples/) | Non-live, source-contract demonstration fixture |
 | [prompts/daily-briefing.md](prompts/daily-briefing.md) | Source-bound LLM prompt contract |
 | [.github/workflows/](.github/workflows/) | CI and manually triggered digest workflow |
 | [schemas/](schemas/) | Evidence and output JSON contracts |

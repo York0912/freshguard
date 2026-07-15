@@ -9,6 +9,7 @@ set -euo pipefail
 HOURS=48
 MIN=2
 CMD=()
+PYTHON_BIN="${FRESHGUARD_PYTHON:-python3}"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -32,7 +33,7 @@ RESULTS=$("${CMD[@]}" 2>/dev/null) || {
 # Count the explicit freshness flags from trusted JSON stdin. Keeping search
 # output out of the Python source prevents a result containing quotes from
 # becoming executable Python code.
-FRESH_COUNT=$(printf '%s' "$RESULTS" | python3 -c '
+FRESH_COUNT=$(printf '%s' "$RESULTS" | "$PYTHON_BIN" -c '
 import json
 import sys
 

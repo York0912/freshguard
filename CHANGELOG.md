@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Documentation
+- Add a deterministic 17-second terminal GIF plus a non-live evidence fixture that demonstrates collect → gate → render → silence without exposing live feed content, local paths, or account details.
+
 ## 2.1.0 (2026-07-15)
 
 ### Security and privacy

@@ -18,4 +18,5 @@ jobs:
       - run: python tests/test-freshguard.py
       - run: python tests/test-rss-guard.py
       - run: python tests/test-render-briefing.py
+      - run: python tests/test-demo-gif.py
       - run: bash tests/test-bash-wrapper.sh

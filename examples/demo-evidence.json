@@ -1,0 +1,57 @@
+{
+  "version": "2.1.0-demo",
+  "schema_version": "1.0",
+  "elapsed_ms": 42,
+  "provider": "deterministic-demo-fixture",
+  "fresh_count": 3,
+  "total_count": 3,
+  "window_hours": 72,
+  "min_items": 2,
+  "items": [
+    {
+      "id": "ev_1",
+      "title": "Example research update",
+      "url": "https://source.example/research-update",
+      "source_name": "Primary source",
+      "source_type": "academic",
+      "source_tier": "primary",
+      "summary": "This deterministic fixture demonstrates the evidence fields preserved by FreshGuard. It is not a live report or a claim about a real event.",
+      "published_at": "2026-07-14T08:00:00+00:00",
+      "retrieved_at": "2026-07-15T08:00:00+00:00",
+      "fresh": true,
+      "_sl": "[S:source.example|D:2026-07-14|F:Y]",
+      "_cutoff": "2026-07-12T08:00:00+00:00",
+      "_dup": false
+    },
+    {
+      "id": "ev_2",
+      "title": "Example release note",
+      "url": "https://source.example/release-note",
+      "source_name": "Official source",
+      "source_type": "blog",
+      "source_tier": "official",
+      "summary": "A second fixed item makes the fresh-count contract visible without fetching a network feed.",
+      "published_at": "2026-07-14T10:00:00+00:00",
+      "retrieved_at": "2026-07-15T08:00:00+00:00",
+      "fresh": true,
+      "_sl": "[S:source.example|D:2026-07-14|F:Y]",
+      "_cutoff": "2026-07-12T08:00:00+00:00",
+      "_dup": false
+    },
+    {
+      "id": "ev_3",
+      "title": "Example public notice",
+      "url": "https://source.example/public-notice",
+      "source_name": "Curated source",
+      "source_type": "government",
+      "source_tier": "curated",
+      "summary": "A third fixed item illustrates that provenance tier is declared, not a truth guarantee.",
+      "published_at": "2026-07-14T12:00:00+00:00",
+      "retrieved_at": "2026-07-15T08:00:00+00:00",
+      "fresh": true,
+      "_sl": "[S:source.example|D:2026-07-14|F:Y]",
+      "_cutoff": "2026-07-12T08:00:00+00:00",
+      "_dup": false
+    }
+  ]
+}
